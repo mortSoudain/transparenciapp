@@ -21,7 +21,6 @@ if (Asistencias.find().count() === 0) {
 		//Devuelve una promesa
 		//senadoresAsistencia(senador.nombre, { tipo: 'todas', incluyeSenador: true, periodo:487 })
 
-		
 		senadoresAsistencia(senador.nombre, { tipo: 'todas', periodo:487 })
     		.then(result => {
     			//Si todo sale bien con la promesa, se insertan los datos de asistencias en la colección
