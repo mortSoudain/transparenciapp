@@ -1,6 +1,7 @@
 var senadoresBase = require('senadores-base')
 var senadoresAsistencia = require('senadores-asistencia')
 var senadoresDetalle = require('senadores-detalle')
+var senadoresElecciones = require('senadores-elecciones')
 
 //Si no hay senadores en la colección
 if (Senadores.find().count() === 0) {
@@ -41,4 +42,10 @@ if (SenadoresDetalle.find().count() === 0) {
 	    		SenadoresDetalle.insert({senadorDetalle:result})
 	    	})
 	});
+}
+
+//Si no hay senadores en la colección
+if (SenadoresElecciones.find().count() === 0) {
+	    		SenadoresElecciones.insert(senadoresElecciones())
+
 }
