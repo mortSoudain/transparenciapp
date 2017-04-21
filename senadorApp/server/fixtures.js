@@ -1,12 +1,11 @@
 var senadoresBase = require('senadores-base')
 var senadoresAsistencia = require('senadores-asistencia')
+var senadoresDetalle = require('senadores-detalle')
 
 //Si no hay senadores en la colección
 if (Senadores.find().count() === 0) {
-
 	//Llamar a la API senadoresBase, y por cada resultado(senador)
 	senadoresBase().forEach(function (senador) {
-
 		//Insertarlo en la colección
 		Senadores.insert(senador);
 	});
@@ -31,5 +30,15 @@ if (Asistencias.find().count() === 0) {
     		 })
     	
 	});
+}
 
+//Si no hay senadores en la colección
+if (SenadoresDetalle.find().count() === 0) {
+	senadoresBase().forEach(function (senador) {
+		senadoresDetalle(senador.nombre)
+			.then(result => {
+	    		//Si todo sale bien con la promesa, se insertan los datos de asistencias en la colección
+	    		SenadoresDetalle.insert({senadorDetalle:result})
+	    	})
+	});
 }
