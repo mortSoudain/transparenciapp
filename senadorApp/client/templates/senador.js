@@ -1,9 +1,14 @@
-Template.senador.helpers({
 
-	asistencias: function() {
-		var hola = 	SenadoresAsistencias.find({},{fields:{'asistencias.sala.detalle':true}}).count()
-		console.log(hola);
-		return hola;
-  	}
+Template.senador.helpers({
+	detalle: function(){ 
+		return SenadoresDetalle.findOne({'senador.nombre':this.nombre}); 
+	},
+	asistencia: function(){ 
+		return SenadoresAsistencias.findOne({'senador.nombre':this.nombre}); 
+	},
+	asistenciaComisiones: function(){
+		var asistenciasSenador = SenadoresAsistencias.findOne({'senador.nombre':this.nombre})
+		return asistenciasSenador;
+	}
 
 });
