@@ -1,8 +1,9 @@
-  Template.senador.helpers({
+Template.senador.helpers({
 
-	asitencia: function(senador) {
-		console.log(senador.nombre);
-    	return Asistencias.find({'senador.nombre':"Chahuán Chahuán, Francisco"});
+	asistencias: function() {
+		var hola = 	SenadoresAsistencias.find({},{fields:{'asistencias.sala.detalle':true}}).count()
+		console.log(hola);
+		return hola;
   	}
 
 });

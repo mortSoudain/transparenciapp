@@ -13,7 +13,7 @@ if (Senadores.find().count() === 0) {
 }
 
 //Si no hay datos de asistencias en la coleccion
-if (Asistencias.find().count() === 0) {
+if (SenadoresAsistencias.find().count() === 0) {
 	//Recorrer a todos los senadores
 	Senadores.find().forEach(function (senador) {
 		//LLamar a la API senadoresAsistencia entregando el nombre y buscando
@@ -24,7 +24,7 @@ if (Asistencias.find().count() === 0) {
 		senadoresAsistencia(senador.nombre, { tipo: 'todas', periodo:487 })
     		.then(result => {
     			//Si todo sale bien con la promesa, se insertan los datos de asistencias en la colección
-    			Asistencias.insert({
+    			SenadoresAsistencias.insert({
     				senador : senador,
     				asistencias : result
     			})
@@ -39,13 +39,15 @@ if (SenadoresDetalle.find().count() === 0) {
 		senadoresDetalle(senador.nombre)
 			.then(result => {
 	    		//Si todo sale bien con la promesa, se insertan los datos de asistencias en la colección
-	    		SenadoresDetalle.insert({senadorDetalle:result})
+	    		SenadoresDetalle.insert({
+	    			senador: senador,
+	    			detalle:result
+	    		})
 	    	})
 	});
 }
 
 //Si no hay senadores en la colección
 if (SenadoresElecciones.find().count() === 0) {
-	    		SenadoresElecciones.insert(senadoresElecciones())
-
+	SenadoresElecciones.insert(senadoresElecciones())
 }
